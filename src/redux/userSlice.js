@@ -1,18 +1,31 @@
-import { creatsSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-export const userSlice = creatsSlice({
-    name: user,
+export const userSlice = createSlice({
+    name: "user",
     initialState:{
-        name: "",
-        email: ""
+        userInfo:{
+            email: "",
+            password: ""
+        },
+        pending: false,
+        error: false
     },
     reducers:{
-        update: (state, action)=>{
-            state.name = action.payload.name;
-            state.email = action.payload.email;
+        updateStart: (state)=>{
+            // state.name = action.payload.name;
+            // state.password = action.payload.password;
+            state.pending = false;
         },
+        updateSuccess: (state, action) =>{
+            state.pending = false;
+            state.userInfo = action.payload;
+        },
+        updateError: (state) =>{
+            state.error = true;
+            state.pending = false;
+        }
     },
 });
 
-export const {update} = userSlice.actions;
+export const {updateStart, updateSuccess, updateError } = userSlice.actions;
 export default userSlice.reducers;

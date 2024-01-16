@@ -13,10 +13,6 @@ const Register = () => {
 
   const handleClick = (e)=>{
     e.preventDefault();
-    console.log('Username:', username.current.value);
-    console.log('Email:', email.current.value);
-    console.log('Password:', password.current.value);
-    console.log('Password Again:', passwordAgain.current.value);
       if(password.current.value !== passwordAgain.current.value){
         console.log("possword does not match")
       }
@@ -33,10 +29,6 @@ const Register = () => {
           console.log(err);
         }
       }
-    
-
-    axios.post("/auth/register")
-
   }
   // console.log("username.current.value");
 
