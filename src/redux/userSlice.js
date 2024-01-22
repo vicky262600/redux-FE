@@ -3,10 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const userSlice = createSlice({
     name: "user",
     initialState:{
-        userInfo:{
-            email: "",
-            password: ""
-        },
+        userInfo:null,
         pending: false,
         error: false
     },
@@ -17,15 +14,17 @@ export const userSlice = createSlice({
             state.pending = false;
         },
         updateSuccess: (state, action) =>{
+            console.log(action.payload);
             state.pending = false;
             state.userInfo = action.payload;
+            console.log(state.userInfo);
         },
         updateError: (state) =>{
             state.error = true;
-            state.pending = false;
+            state.pending = false;  
         }
     },
 });
 
-export const {updateStart, updateSuccess, updateError } = userSlice.actions;
-export default userSlice.reducers;
+export const { updateStart, updateSuccess, updateError } = userSlice.actions;
+export default userSlice.reducer;
