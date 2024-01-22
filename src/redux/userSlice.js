@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const userSlice = createSlice({
     name: "user",
     initialState:{
-        userInfo:null,
+        userInfo: JSON.parse(localStorage.getItem("userInfo")) ||  null,
         pending: false,
         error: false
     },
@@ -17,14 +17,15 @@ export const userSlice = createSlice({
             console.log(action.payload);
             state.pending = false;
             state.userInfo = action.payload;
-            console.log(state.userInfo);
+            localStorage.setItem('userInfo', JSON.stringify(action.payload));
         },
         updateError: (state) =>{
             state.error = true;
             state.pending = false;  
         }
     },
-});
+}
+);
 
 export const { updateStart, updateSuccess, updateError } = userSlice.actions;
 export default userSlice.reducer;

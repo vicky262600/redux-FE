@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import MessageIcon from '@mui/icons-material/Message';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import {Link} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 
@@ -113,9 +112,7 @@ const Topbar = () => {
   return (
     <Bar>
         <Left>
-          <Link to="/" style={{textDecoration:"none", color:"white"}}>
             <Tital>RIRAsocial</Tital>
-          </Link>
         </Left>
         <Center>
           <Searrchbar>
@@ -141,9 +138,7 @@ const Topbar = () => {
               <NotificationsIcon/>
               <Span>1</Span>
             </NotificationDiv>
-            <Link to={`/profile/${user.username}`}>
               <Profile src={user.profilePicture ? user.profilePicture : "https://peach-advisory-zebra-318.mypinata.cloud/ipfs/QmT64bZ8iGeqwwvng1HsbTWvmPSB8SDagqMecYycRhCP8f"}/>            
-            </Link>
           </Icons>
         </Right>
     </Bar>
