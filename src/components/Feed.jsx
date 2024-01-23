@@ -9,7 +9,7 @@ const Feedd = styled.div`
   flex: 5.5;
 `
 
-const Feed = ({ username }) => {
+const Feed = () => {
   const [posts, setPosts] = useState([]);
   const user = useSelector((state) => state.user.userInfo);
 console.log(user,"i am user");  
@@ -22,7 +22,7 @@ console.log(user,"i am user");
       }));
     };
     fetchPosts(); 
-  }, [username, user._id]);
+  }, [user._id]);
 
   // useEffect(() => {
   //   const fetchPosts = async () => {
@@ -50,7 +50,7 @@ console.log(user,"i am user");
 
   return (
     <Feedd>
-        {(!username || username === user.username) && <Share />}
+        <Share />
         {
           posts.map(item=>(
             <Post item={item} key={item._id}/>
