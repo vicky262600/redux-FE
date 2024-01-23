@@ -125,7 +125,7 @@ const Share = () => {
                   } else {
                     console.log('No files found in the storage path.');
                   }
-                  await axios.post('/posts', newPost);
+                  await axios.post('https://redux-server-chi.vercel.app/posts', newPost);
                   window.location.reload();
                 } catch (err) {
                   console.error('Error:', err);

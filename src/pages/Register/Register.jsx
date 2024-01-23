@@ -158,7 +158,7 @@ const Register = () => {
             email: email.current.value,
             password: password.current.value
           }
-          axios.post("/auth/register", user);
+          axios.post("https://redux-server-chi.vercel.app/auth/register", user);
           navigate("/login");
         }catch(err){
           console.log(err);

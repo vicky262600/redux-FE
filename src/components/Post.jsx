@@ -122,7 +122,7 @@ const Post = ({item}) => {
 
     const likeHandler =() => {
         try{
-            axios.put("/posts/"+ item._id +"/like", {userId:user._id})
+            axios.put("https://redux-server-chi.vercel.app/posts/"+ item._id +"/like", {userId:user._id})
         }catch(err){
 
         }
