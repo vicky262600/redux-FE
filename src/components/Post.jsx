@@ -6,7 +6,6 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { format } from 'timeago.js';
-import {Link} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // import { Users } from '../Dummydata';
@@ -117,20 +116,36 @@ const Post = ({item}) => {
         setIsLiked(item.like.includes(user._id));
     }, [user._id, item.like]);
 
+    // const fetchPostUser = async () => {
+    //     try {
+    //       const postuserId = item.userId;
+    //       console.log(postuserId);
+    //       const postUserResponse = await axios.get("https://redux-server-chi.vercel.app/api/users", postuserId);
+    //       console.log(postUserResponse);
+    //       setPostuser(postUserResponse.data);
+    //     } catch (error) {
+    //       console.error("Error fetching post user:", error);
+    //       // Handle the error if needed
+    //     }
+    //   };
+
+    //   fetchPostUser();
+
     useEffect(() => {
         const fetchPostUser = async () => {
-          try {
-            const postuserId = item.userId;
-            const postUserResponse = await axios.get("https://redux-server-chi.vercel.app/api/users", postuserId);
-            setPostuser(postUserResponse.data);
-          } catch (error) {
-            console.error("Error fetching post user:", error);
-            // Handle the error if needed
-          }
+            try {
+                const userId = item.userId;
+                const postUserResponse = await axios.get(`https://redux-server-chi.vercel.app/api/users?userId=${userId}`);
+                const y = postUserResponse.data;
+                setPostuser(y.username);
+            } catch (error) {
+                console.error("Error fetching post user:", error);
+                // Handle the error if needed
+            }
         };
-      
+
         fetchPostUser();
-      }, [item]);
+    }, [item.userId, postuser]);
 
     const likeHandler =() => {
         try{
@@ -148,10 +163,10 @@ const Post = ({item}) => {
         <Postwraper>
             <Heading>
                 <Profileheading>
-                    <Link to={`/profile/${user.username}`}>
                         <Image src={user.profilePicture || 'https://peach-advisory-zebra-318.mypinata.cloud/ipfs/QmT64bZ8iGeqwwvng1HsbTWvmPSB8SDagqMecYycRhCP8f'}/>
-                    </Link>
-                    <Username>{postuser.username}</Username>
+                        <Username>
+                            {postuser}
+                        </Username>
                     {/* const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
                         const evenNumbers = numbers.filter(function(number) {
                         return number % 2 === 0;
